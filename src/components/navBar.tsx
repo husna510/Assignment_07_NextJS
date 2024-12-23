@@ -1,39 +1,78 @@
-"use client";
-import { IoServer } from "react-icons/io5";
-import { RiUserReceived2Fill } from "react-icons/ri";
-import React from "react";
+import Link from "next/link";
+import React, { useState } from "react";
 
 const NavBar = () => {
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-500 p-4">
-      <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-       
-        <h1 className="text-2xl font-bold text-cyan-950 mb-6 text-center">
-          Data Fetching App
-        </h1>
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  return (
+    <nav className="bg-gradient-to-r from-cyan-950 to-cyan-900 shadow-md">
+      <div className="container mx-auto flex justify-between items-center py-4 px-6">
        
-        <div className="flex flex-col gap-4">
-        <button
-      onClick={() => (window.location.href = "/clientSide")}
-      className="w-full px-6 py-3 bg-lime-600 text-white rounded-lg font-medium shadow-md hover:bg-slate-900 hover:scale-105 hover:shadow-lg transition-transform flex items-center justify-center gap-2"
-    >
-      
-      <span className="text-2xl">
-        <RiUserReceived2Fill/>
-      </span>
-      Client Side
-    </button>
+        <div className="text-lg font-bold">
+          <Link href="/">
+            <p className="hover:text-lime-600 hover:text-xl text-slate-100 transition-colors duration-300">Data Fetching</p>
+          </Link>
+        </div>
+
+        
+        <div className="hidden md:flex space-x-6">
+          <Link href="/">
+            <p className="hover:text-lime-600 hover:underline hover:font-bold text-white">Home</p>
+          </Link>
+          <Link href="/clientSide">
+            <p className="hover:text-lime-600 hover:underline hover:font-bold text-white">Client Side</p>
+          </Link>
+          <Link href="/serverSide">
+            <p className="hover:text-lime-600 hover:underline hover:font-bold text-white">Server Side</p>
+          </Link>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="md:hidden">
           <button
-            onClick={() => (window.location.href = "/serverSide")}
-            className="w-full px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium shadow-md hover:bg-slate-900 hover:scale-105 hover:shadow-lg transition-transform flex items-center justify-center gap-2"
+            className="text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
+            aria-label="Toggle Menu"
+            onClick={toggleMobileMenu}
           >
-            <span className="text-2xl"><IoServer/></span>
-            Server Side
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
           </button>
         </div>
       </div>
-    </div>
+
+    
+      <div
+        className={`${
+          isMobileMenuOpen ? "flex" : "hidden"
+        } flex-col space-y-4 px-6 pb-4 md:hidden`}
+      >
+        <Link href="/">
+          <p className="hover:text-lime-600 hover:underline hover:font-bold text-white">Home</p>
+        </Link>
+        <Link href="/clientSide">
+          <p className="hover:text-lime-600 hover:underline hover:font-bold text-white">Client Side</p>
+        </Link>
+        <Link href="/serverSide">
+          <p className="hover:text-lime-600 hover:underline hover:font-bold text-white">Server Side</p>
+        </Link>
+      </div>
+    </nav>
   );
 };
 

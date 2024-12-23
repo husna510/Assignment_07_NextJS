@@ -1,5 +1,5 @@
 "use client";
-
+import NavBar from "@/components/navBar";
 import React, { useState, useEffect } from "react";
 
 interface Products {
@@ -29,7 +29,9 @@ const ClientSidePage = () => {
   }, []);
 
   return (
-    <div className="p-6 ">
+    <div className="flex flex-col gap-4  min-h-screen bg-gradient-to-b from-gray-50 via-gray-100 to-gray-200 ">
+      <NavBar />
+      <div className="p-6">
       <h1 className="text-2xl font-bold text-center mb-8">Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data.map((product, index) => (
@@ -77,7 +79,7 @@ const ClientSidePage = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div></div>
     </div>
   );
 };
