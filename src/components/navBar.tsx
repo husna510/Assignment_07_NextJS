@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -9,16 +10,14 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-gradient-to-r from-cyan-950 to-cyan-900 shadow-md">
+    <nav className="fixed top-0 w-full z-50 bg-gradient-to-r from-cyan-950 to-cyan-900 shadow-md">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
-       
         <div className="text-lg font-bold">
           <Link href="/">
             <p className="hover:text-lime-600 hover:text-xl text-slate-100 transition-colors duration-300">Data Fetching</p>
           </Link>
         </div>
 
-        
         <div className="hidden md:flex space-x-6">
           <Link href="/">
             <p className="hover:text-lime-600 hover:underline hover:font-bold text-white">Home</p>
@@ -56,7 +55,6 @@ const NavBar = () => {
         </div>
       </div>
 
-    
       <div
         className={`${
           isMobileMenuOpen ? "flex" : "hidden"
